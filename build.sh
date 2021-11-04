@@ -2,7 +2,7 @@
 
 GITHUB_TOKEN=""
 
-PROJECT="Jrohy/trojan"
+PROJECT="xbhuang1994/trojan"
 
 #获取当前的这个脚本所在绝对路径
 SHELL_PATH=$(cd `dirname $0`; pwd)
@@ -36,21 +36,19 @@ NOW=`TZ=Asia/Shanghai date "+%Y%m%d-%H%M"`
 GO_VERSION=`go version|awk '{print $3,$4}'`
 GIT_VERSION=`git rev-parse HEAD`
 LDFLAGS="-w -s -X 'trojan/trojan.MVersion=$VERSION' -X 'trojan/trojan.BuildDate=$NOW' -X 'trojan/trojan.GoVersion=$GO_VERSION' -X 'trojan/trojan.GitVersion=$GIT_VERSION'"
-
 GOOS=linux GOARCH=amd64 go build -ldflags "$LDFLAGS" -o "result/trojan-linux-amd64" .
 GOOS=linux GOARCH=arm64 go build -ldflags "$LDFLAGS" -o "result/trojan-linux-arm64" .
-
 cd result
 
-UPLOAD_ITEM=($(ls -l|awk '{print $9}'|xargs -r))
+# UPLOAD_ITEM=($(ls -l|awk '{print $9}'|xargs))
 
-for ITEM in ${UPLOAD_ITEM[@]}
-do
-   upload $ITEM
-done
+# for ITEM in ${UPLOAD_ITEM[@]}
+# do
+#    upload $ITEM
+# done
 
-echo "upload completed!"
+# echo "upload completed!"
 
-cd $SHELL_PATH
+# cd $SHELL_PATH
 
-rm -rf result
+# rm -rf result
